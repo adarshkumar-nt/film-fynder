@@ -1,15 +1,9 @@
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import myAxios from "../client";
+import { useSelector } from "react-redux";
 
-const defaultParams = {
-    s: "Joker",
-    type: "movie",
-    y: "2019",
-    page: "1"
-}
-
-export const useSearchMovies = (params = defaultParams) => {
-    const {s, type, y, page} = params;
+export const useSearchMovies = () => {
+    const {s, type, y, page} = useSelector((state) => state.search)
     return useQuery({
         queryKey: ['movies', s, type, y, page], 
         queryFn: async () => {
@@ -25,6 +19,5 @@ export const useSearchMovies = (params = defaultParams) => {
             return data
         },
         enabled: !!s,
-        placeholderData: keepPreviousData 
     })
 }

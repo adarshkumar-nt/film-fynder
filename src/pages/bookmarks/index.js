@@ -24,20 +24,6 @@ export default function Bookmark() {
   return (
     <div>
       <Link href="/">Go to homepage</Link>
-      <Carousel arrows autoplay={{ dotDuration: true }} autoplaySpeed={5000}>
-        <div>
-          <h3 style={contentStyle}>1</h3>
-        </div>
-        <div>
-          <h3 style={contentStyle}>2</h3>
-        </div>
-        <div>
-          <h3 style={contentStyle}>3</h3>
-        </div>
-        <div>
-          <h3 style={contentStyle}>4</h3>
-        </div>
-      </Carousel>
       <Row gutter={32}>
         {bookmarks.map((movie) => (
           <Col span={6} style={{ padding: "8px" }} key={movie.imdbID}>
