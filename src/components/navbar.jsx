@@ -1,45 +1,68 @@
-import { Flex, Menu, Typography } from 'antd'
-import { useRouter } from 'next/router';
-import React from 'react'
+import { Flex, Menu, Typography } from "antd";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import React, { useMemo } from "react";
+import SearchBar from "@/components/searchBar";
 
-const boxStyle = {
-  width: '100%',
-};
+const { Title } = Typography;
 
-const {Title} = Typography
 export default function Navbar() {
-  const router = useRouter()
+  const router = useRouter();
+
   const items = [
-    {
-      key: "1",
-      icon: "",
-      label: "Bookmarks"
-    },
-    {
-      key: "2",
-      icon: "",
-      label: "Movies"
-    },
-    {
-      key: "3",
-      icon: "",
-      label: "TV"
-    }
-  ]
+    { key: "bookmarks", label: "Bookmarks", path: "/bookmarks" },
+    { key: "movies", label: "Movies", path: "/movies" },
+    { key: "tv", label: "TV", path: "/tv" },
+  ];
+
+  const selectedKey = useMemo(() => {
+    const currentPath = router.pathname.toLowerCase();
+    if (currentPath.includes("bookmarks")) return "bookmarks";
+    if (currentPath.includes("movies")) return "movies";
+    if (currentPath.includes("tv")) return "tv";
+    return "";
+  }, [router.pathname]);
 
   const onClick = (e) => {
-    console.log(items[e.key].label);
-    router.push("/")
-    
-  }
+    const selectedItem = items.find((item) => item.key === e.key);
+    if (selectedItem) {
+      router.push(selectedItem.path);
+    }
+  };
 
   return (
-    <Flex style={boxStyle} justify='space-between' align='center'> 
-      <Title level={3} style={{color: "white"}}>
-        FilmFynder
+    <Flex
+      justify="space-between"
+      align="center"
+      style={{
+        width: "100%",
+        padding: "0 8px",
+        height: "64px",
+        gap: "16px",
+      }}
+    >
+      <Title level={3} style={{ margin: 0, whiteSpace: "nowrap" }}>
+        <Link href="/" style={{ color: "white", textDecoration: "none" }}>
+          FilmFynder
+        </Link>
       </Title>
-      <Menu onClick={onClick} items={items} mode='horizontal' theme='dark'/>
-    </Flex>
-  )
-}
 
+      <Menu
+        onClick={onClick}
+        items={items}
+        mode="horizontal"
+        theme="dark"
+        selectedKeys={[selectedKey]}
+        style={{
+          background: "transparent",
+          borderBottom: "none",
+          flex: "1 1 auto",
+          justifyContent: "center",
+          display: "flex",
+          minWidth: "300px",
+        }}
+      />
+      <SearchBar />
+    </Flex>
+  );
+}

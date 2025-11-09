@@ -1,47 +1,66 @@
-import { bookmarkToggled } from "@/features/bookmarks/bookmarksSlice";
-import { BookFilled } from "@ant-design/icons";
-import { Card, Carousel, Col, Row } from "antd";
-import Link from "next/link";
+"use client";
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+import { Typography, Empty, Flex } from "antd";
+import MovieList from "@/components/movieList";
 
-const { Meta } = Card;
-
-const contentStyle = {
-  height: '160px',
-  color: '#fff',
-  lineHeight: '360px',
-  textAlign: 'center',
-  background: '#364d79',
-};
+const { Title, Text } = Typography;
 
 export default function Bookmark() {
-  const dispatch = useDispatch();
   const bookmarks = useSelector((state) => state.bookmarks);
-  const onBookmarkClicked = (movie) => {
-    dispatch(bookmarkToggled(movie));
-  };
+
+  const hasBookmarks = bookmarks && bookmarks.length > 0;
+
   return (
-    <div>
-      <Link href="/">Go to homepage</Link>
-      <Row gutter={32}>
-        {bookmarks.map((movie) => (
-          <Col span={6} style={{ padding: "8px" }} key={movie.imdbID}>
-            <Card
-              hoverable
-              cover={
-                <img draggable={false} alt={movie.title} src={movie.Poster} />
-              }
-            >
-              <Meta title={movie.Title} description={movie.Plot} />
-              <BookFilled
-                style={{ color: "#efee45" }}
-                onClick={() => onBookmarkClicked(movie)}
-              />
-            </Card>
-          </Col>
-        ))}
-      </Row>
+    <div style={{ minHeight: "80vh" }}>
+      <Flex
+        justify="space-between"
+        align="center"
+        wrap
+        style={{ marginBottom: "24px" }}
+      >
+        <div>
+          <Title level={2} style={{ margin: 0 }}>
+            Bookmarks
+          </Title>
+          {hasBookmarks && (
+            <Text type="secondary">
+              You have {bookmarks.length}{" "}
+              {bookmarks.length === 1 ? "movie" : "movies"} bookmarked.
+            </Text>
+          )}
+        </div>
+      </Flex>
+
+      {hasBookmarks ? (
+        <MovieList movies={bookmarks} totalResults={bookmarks.length} />
+      ) : (
+        <Flex
+          vertical
+          align="center"
+          justify="center"
+          style={{
+            marginTop: "80px",
+            minHeight: "50vh",
+          }}
+        >
+          <Empty
+            description={
+              <div>
+                <Title level={4} style={{ marginBottom: "8px" }}>
+                  You haven't bookmarked any movies yet
+                </Title>
+                <Text type="secondary">
+                  Search and click the{" "}
+                  <span style={{ color: "#fadb14" }}>bookmark icon</span> to
+                  save your favorites.
+                </Text>
+              </div>
+            }
+            image={Empty.PRESENTED_IMAGE_SIMPLE}
+          />
+        </Flex>
+      )}
     </div>
   );
 }
