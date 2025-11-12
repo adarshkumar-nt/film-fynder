@@ -1,39 +1,54 @@
 "use client";
 import React from "react";
 import { useSelector } from "react-redux";
-import { Typography, Empty, Flex } from "antd";
+import { Typography, Empty, Flex, Space } from "antd";
 import MovieList from "@/components/movieList";
+import { BookFilled } from "@ant-design/icons";
+import { Roboto } from "next/font/google";
+import { roboto } from "@/utils/fonts.mjs";
 
 const { Title, Text } = Typography;
 
 export default function Bookmark() {
   const bookmarks = useSelector((state) => state.bookmarks);
-
   const hasBookmarks = bookmarks && bookmarks.length > 0;
 
   return (
-    <div style={{ minHeight: "80vh" }}>
-      <Flex
-        justify="space-between"
-        align="center"
-        wrap
-        style={{ marginBottom: "24px" }}
-      >
-        <div>
-          <Title level={2} style={{ margin: 0 }}>
+    <Flex vertical align="center" style={{ width: "100%", paddingTop: "16px" }}>
+      {hasBookmarks && (
+        <Flex
+          vertical
+          align="center"
+          justify="center"
+          style={{
+            marginBottom: "32px",
+            textAlign: "center",
+            width: "100%",
+          }}
+        >
+          <Title
+            level={2}
+            className={roboto.className}
+            style={{
+              marginBottom: "8px",
+              paddingTop: "16px",
+            }}
+          >
             Bookmarks
           </Title>
-          {hasBookmarks && (
-            <Text type="secondary">
-              You have {bookmarks.length}{" "}
-              {bookmarks.length === 1 ? "movie" : "movies"} bookmarked.
-            </Text>
-          )}
-        </div>
-      </Flex>
 
+          <Text type="secondary">
+            You have {bookmarks.length}{" "}
+            {bookmarks.length === 1 ? "movie" : "movies"} bookmarked.
+          </Text>
+        </Flex>
+      )}
+
+      {/* Main Content */}
       {hasBookmarks ? (
-        <MovieList movies={bookmarks} totalResults={bookmarks.length} />
+        <Flex style={{ width: "100%" }}>
+          <MovieList movies={bookmarks} totalResults={bookmarks.length} />
+        </Flex>
       ) : (
         <Flex
           vertical
@@ -42,25 +57,34 @@ export default function Bookmark() {
           style={{
             marginTop: "80px",
             minHeight: "50vh",
+            width: "100%",
+            textAlign: "center",
           }}
         >
           <Empty
             description={
-              <div>
-                <Title level={4} style={{ marginBottom: "8px" }}>
+              <Space direction="vertical" align="center" size={4}>
+                <Title
+                  level={4}
+                  style={{ marginBottom: 0 }}
+                  className={roboto.className}
+                >
                   You haven't bookmarked any movies yet
                 </Title>
+
                 <Text type="secondary">
                   Search and click the{" "}
-                  <span style={{ color: "#fadb14" }}>bookmark icon</span> to
-                  save your favorites.
+                  <span style={{ color: "#F2BB05" }}>
+                    <BookFilled /> bookmark icon
+                  </span>{" "}
+                  to save your favorites.
                 </Text>
-              </div>
+              </Space>
             }
             image={Empty.PRESENTED_IMAGE_SIMPLE}
           />
         </Flex>
       )}
-    </div>
+    </Flex>
   );
 }

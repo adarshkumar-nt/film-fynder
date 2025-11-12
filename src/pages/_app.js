@@ -1,24 +1,29 @@
-"use client"
+"use client";
 import { Provider } from "react-redux";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ConfigProvider, FloatButton, Layout } from "antd";
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { ConfigProvider, Flex, FloatButton, Layout, Typography } from "antd";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 import { store } from "@/store/store";
 import "@/styles/globals.css";
 import Navbar from "@/components/navbar";
 import { useState } from "react";
-// import SearchBar from "@/components/searchBar";
+import { roboto, roboto_mono } from "@/utils/fonts.mjs";
+import { theme } from "@/utils/theme.mjs";
 
-const { Header, Footer, Content, Sider } = Layout;
+const { Text } = Typography;
+
+const { Header, Footer, Content } = Layout;
 
 export default function App({ Component, pageProps }) {
-  const [queryClient] = useState(() => new QueryClient())
+  const [queryClient] = useState(() => new QueryClient());
   return (
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
-        <ConfigProvider>
-          <Layout style={{minHeight: "100vh"}}>
+        <ConfigProvider
+          theme={theme}
+        >
+          <Layout style={{ minHeight: "100vh", maxWidth: "100vw" }}>
             <Header
               style={{
                 position: "sticky",
@@ -27,14 +32,29 @@ export default function App({ Component, pageProps }) {
                 width: "100%",
                 display: "flex",
                 alignItems: "center",
+                backgroundColor: "#28282d",
+                borderBottom: "2px solid transparent",
+                borderImage: "linear-gradient(to right, #F06543, #1C7C54)",
+                borderImageSlice: 1,
               }}
             >
               <Navbar />
             </Header>
-            <Content style={{ padding: "32px"}}>
+            <Content
+              style={{
+                backgroundColor: "#2B2B31",
+                paddingBottom: "24px",
+              }}
+            >
               <Component {...pageProps} />
             </Content>
-            <Footer>Footer</Footer>
+            <Footer style={{ backgroundColor: "#28282d" }}>
+              <Flex justify="center" align="center">
+                <Text style={{ color: "#EFF1ED" }} className={roboto.className}>
+                  FilmFynder
+                </Text>
+              </Flex>
+            </Footer>
             <FloatButton.BackTop />
           </Layout>
         </ConfigProvider>

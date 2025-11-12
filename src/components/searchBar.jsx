@@ -37,7 +37,7 @@ export default function SearchBar() {
 
   const handleSearch = useCallback(
     debounce((term) => {
-      const trimmed = term.trim();
+      const trimmed = term.trim().replace(/\s/g, "+");
       dispatch(setFilter({ key: "page", value: "1" }));
 
       if (routeType) {
@@ -74,7 +74,6 @@ export default function SearchBar() {
       enterButton={<SearchOutlined />}
       style={{
         maxWidth: "340px",
-        borderRadius: "8px",
         overflow: "hidden",
       }}
     />

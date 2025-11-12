@@ -21,3 +21,19 @@ export const useSearchMovies = () => {
         enabled: !!s,
     })
 }
+
+export const useMovieDetail = ({i}) => {
+    return useQuery({
+        queryKey: ['movieDetail', i],
+        queryFn: async () => {
+            const {data} = await myAxios.get("/", {
+                params: {
+                    i,
+                    apiKey: process.env.NEXT_PUBLIC_OMDB_KEY
+                }
+            })
+            return data
+        },
+        enabled: !!i
+    })
+}

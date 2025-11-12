@@ -3,8 +3,11 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useMemo } from "react";
 import SearchBar from "@/components/searchBar";
+import { roboto, roboto_mono } from "@/utils/fonts.mjs";
 
 const { Title } = Typography;
+
+
 
 export default function Navbar() {
   const router = useRouter();
@@ -41,9 +44,13 @@ export default function Navbar() {
         gap: "16px",
       }}
     >
-      <Title level={3} style={{ margin: 0, whiteSpace: "nowrap" }}>
-        <Link href="/" style={{ color: "white", textDecoration: "none" }}>
-          FilmFynder
+      <Title
+        level={3}
+        style={{ margin: 0, whiteSpace: "nowrap", letterSpacing: "1px" }}
+        className={roboto.className}
+      >
+        <Link href="/" style={{ color: "#EFF1ED", textDecoration: "none" }}>
+          FILM<span style={{ color: "#F06543" }}>FYNDER</span>
         </Link>
       </Title>
 
@@ -61,6 +68,7 @@ export default function Navbar() {
           display: "flex",
           minWidth: "300px",
         }}
+        className={roboto_mono.className}
       />
       <SearchBar />
     </Flex>
