@@ -20,7 +20,7 @@ export default function SectionHeader({ title, image}) {
         align="center"
         justify="center"
         style={{
-          height: "140px"
+          height: "20vh"
         }}
       >
         <Title

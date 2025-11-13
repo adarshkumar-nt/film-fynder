@@ -33,7 +33,7 @@ export default function Movies() {
 
   return (
     <>
-      <SectionHeader title="Movies" image="/movie.png"/>
+      <SectionHeader title="Movies" image="/movie-theatre.jpg"/>
       <MovieList movies={data.Search} totalResults={data.totalResults} />
     </>
   );

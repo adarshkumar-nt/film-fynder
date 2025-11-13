@@ -74,6 +74,7 @@ export default function Navbar() {
               flex: "1 1 auto",
               justifyContent: "center",
               display: "flex",
+              fontSize: "16px"
             }}
             className={nunito.className}
           />

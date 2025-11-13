@@ -62,7 +62,7 @@ export default function MovieList({ movies = [], totalResults = 0 }) {
                 : `/movies/${movie.imdbID}`;
 
             return (
-              <Col key={movie.imdbID} xs={24} sm={12} md={8} lg={6} xl={6}>
+              <Col key={movie.imdbID} xs={24} sm={12} md={8} lg={6} xl={4}>
                 <Card
                   hoverable
                   style={{
