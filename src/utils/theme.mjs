@@ -1,4 +1,4 @@
-import { roboto_mono } from "./fonts.mjs";
+import { nunito } from "./fonts.mjs";
 
 export const theme = {
   token: {
@@ -10,7 +10,7 @@ export const theme = {
   },
   components: {
     Typography: {
-      fontFamily: roboto_mono.style.fontFamily,
+      fontFamily: nunito.style.fontFamily,
     },
     Card: {
       lineWidth: 0,

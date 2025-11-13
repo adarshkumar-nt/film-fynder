@@ -1,16 +1,19 @@
-import { Flex, Menu, Typography } from "antd";
+"use client";
+import { useState, useMemo } from "react";
+import { Flex, Menu, Typography, Button, Drawer, Grid } from "antd";
+import { MenuOutlined } from "@ant-design/icons";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useMemo } from "react";
 import SearchBar from "@/components/searchBar";
-import { roboto, roboto_mono } from "@/utils/fonts.mjs";
+import { roboto, nunito } from "@/utils/fonts.mjs";
 
 const { Title } = Typography;
-
-
+const { useBreakpoint } = Grid;
 
 export default function Navbar() {
   const router = useRouter();
+  const screens = useBreakpoint();
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   const items = [
     { key: "bookmarks", label: "Bookmarks", path: "/bookmarks" },
@@ -26,51 +29,91 @@ export default function Navbar() {
     return "";
   }, [router.pathname]);
 
-  const onClick = (e) => {
+  const onMenuClick = (e) => {
     const selectedItem = items.find((item) => item.key === e.key);
     if (selectedItem) {
       router.push(selectedItem.path);
+      setDrawerOpen(false);
     }
   };
 
-  return (
-    <Flex
-      justify="space-between"
-      align="center"
-      style={{
-        width: "100%",
-        padding: "0 8px",
-        height: "64px",
-        gap: "16px",
-      }}
-    >
-      <Title
-        level={3}
-        style={{ margin: 0, whiteSpace: "nowrap", letterSpacing: "1px" }}
-        className={roboto.className}
-      >
-        <Link href="/" style={{ color: "#EFF1ED", textDecoration: "none" }}>
-          FILM<span style={{ color: "#F06543" }}>FYNDER</span>
-        </Link>
-      </Title>
+  const isMobile = !screens.md;
 
-      <Menu
-        onClick={onClick}
-        items={items}
-        mode="horizontal"
-        theme="dark"
-        selectedKeys={[selectedKey]}
+  return (
+    <>
+      <Flex
+        justify="space-between"
+        align="center"
         style={{
-          background: "transparent",
-          borderBottom: "none",
-          flex: "1 1 auto",
-          justifyContent: "center",
-          display: "flex",
-          minWidth: "300px",
+          width: "100%",
+          padding: isMobile ? "0 12px" : "0 16px",
+          height: "64px",
+          gap: "16px",
         }}
-        className={roboto_mono.className}
-      />
-      <SearchBar />
-    </Flex>
+      >
+        <Title
+          level={3}
+          style={{ margin: 0, whiteSpace: "nowrap", letterSpacing: "1px" }}
+          className={roboto.className}
+        >
+          <Link href="/" style={{ color: "#EFF1ED", textDecoration: "none" }}>
+            FILM<span style={{ color: "#F06543" }}>FYNDR</span>
+          </Link>
+        </Title>
+
+        {!isMobile && (
+          <Menu
+            onClick={onMenuClick}
+            items={items}
+            mode="horizontal"
+            theme="dark"
+            selectedKeys={[selectedKey]}
+            style={{
+              background: "transparent",
+              borderBottom: "none",
+              flex: "1 1 auto",
+              justifyContent: "center",
+              display: "flex",
+            }}
+            className={nunito.className}
+          />
+        )}
+
+        {!isMobile && <SearchBar />}
+
+        {isMobile && (
+          <Button
+            type="text"
+            icon={<MenuOutlined style={{ fontSize: 24, color: "#EFF1ED" }} />}
+            onClick={() => setDrawerOpen(true)}
+          />
+        )}
+      </Flex>
+      <Drawer
+        open={drawerOpen}
+        onClose={() => setDrawerOpen(false)}
+        placement="left"
+        bodyStyle={{ padding: 0 }}
+        headerStyle={{ background: "#28282d", borderBottom: "none" }}
+        style={{ background: "#2B2B31" }}
+      >
+        <Flex vertical style={{ padding: "16px" }} gap="large">
+          <SearchBar />
+
+          <Menu
+            onClick={onMenuClick}
+            items={items}
+            mode="vertical"
+            theme="dark"
+            selectedKeys={[selectedKey]}
+            style={{
+              background: "transparent",
+              borderRight: "none",
+              marginTop: "16px",
+            }}
+          />
+        </Flex>
+      </Drawer>
+    </>
   );
 }

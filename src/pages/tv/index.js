@@ -1,5 +1,6 @@
 "use client";
 
+import ErrorComp from "@/components/error";
 import MovieList from "@/components/movieList";
 import SectionHeader from "@/components/sectionHeader";
 import Spinner from "@/components/spinner";
@@ -25,9 +26,7 @@ export default function TV() {
   }
   if (data.Response === "False") {
     return (
-      <Flex>
-        <Title className={roboto.className}>Failed to load series: {data.Error}</Title>
-      </Flex>
+      <ErrorComp message="Failed to load series" error={data.Error}/>
     );
   }
   return (

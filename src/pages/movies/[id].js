@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import React from "react";
 import MovieDetail from "@/components/movieDetail";
 import { roboto } from "@/utils/fonts.mjs";
+import Error from "@/components/error";
 
 const { Title } = Typography;
 
@@ -25,10 +26,8 @@ export default function MovieDetails() {
 
   if (isError || !data || data.Response === "False") {
     return (
-      <Flex justify="center" align="center" style={{ minHeight: "60vh" }}>
-        <Title className={roboto.className}>
-          Failed to load movie details.
-        </Title>
+      <Flex justify="center" align="center">
+        <Title className={roboto.className}>Failed to load movie</Title>
       </Flex>
     );
   }

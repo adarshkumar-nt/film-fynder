@@ -1,15 +1,47 @@
 "use client";
-import { Flex, Typography, Image, Tag, Divider, Space, Card } from "antd";
+import {
+  Flex,
+  Typography,
+  Image,
+  Tag,
+  Divider,
+  Space,
+  Card,
+  message,
+  Tooltip,
+} from "antd";
 import {
   ClockCircleOutlined,
   CalendarOutlined,
   StarFilled,
+  BookFilled,
 } from "@ant-design/icons";
 import { roboto } from "@/utils/fonts.mjs";
+import { useDispatch, useSelector } from "react-redux";
+import { bookmarkToggled } from "@/features/bookmarks/bookmarksSlice";
 
 const { Title, Text } = Typography;
 
 export default function MovieDetail({ movie }) {
+  const [messageApi, contextHolder] = message.useMessage();
+  const bookmarks = useSelector((state) => state.bookmarks);
+  const isBookmarked = bookmarks.some((b) => b.imdbID === movie.imdbID);
+  const dispatch = useDispatch();
+  const onBookmarkClicked = (movie) => {
+    dispatch(bookmarkToggled(movie));
+
+    messageApi.open({
+      type: isBookmarked ? "warning" : "success",
+      content: isBookmarked
+        ? `"${movie.Title}" removed from bookmarks`
+        : `"${movie.Title}" added to bookmarks`,
+      style: {
+        color: "#EFF1ED",
+        fontWeight: 500,
+      },
+      duration: 2,
+    });
+  };
   return (
     <Flex
       justify="center"
@@ -18,12 +50,12 @@ export default function MovieDetail({ movie }) {
       gap="large"
       style={{
         maxWidth: "1100px",
+        maxHeight: "100%",
         margin: "40px auto",
         padding: "0 24px",
-        color: "#F0F0F0",
       }}
     >
-      {/* --- Poster Section --- */}
+      {contextHolder}
       <Flex
         justify="center"
         align="center"
@@ -40,6 +72,10 @@ export default function MovieDetail({ movie }) {
               ? movie.Poster
               : "/default-movie.png"
           }
+          onError={(e) => {
+            e.target.onerror = null;
+            e.target.src = "/default-movie.png";
+          }}
           alt={movie.Title}
           preview={false}
           width={280}
@@ -51,17 +87,35 @@ export default function MovieDetail({ movie }) {
         />
       </Flex>
 
-      {/* --- Details Section --- */}
-      <Flex vertical flex="1 1 500px" style={{ minWidth: "300px" }}>
-        <Title
-          className={roboto.className}
-          style={{
-            color: "#FFFFFF",
-            marginBottom: "12px",
-          }}
-        >
-          {movie.Title}
-        </Title>
+      <Flex vertical flex="1 1 500px" style={{ minWidth: "200px" }}>
+        <Flex justify="space-between">
+          <Title
+            className={roboto.className}
+            style={{
+              color: "#FFFFFF",
+              marginBottom: "12px",
+            }}
+          >
+            {movie.Title}
+          </Title>
+          <Tooltip title={isBookmarked? "Remove from bookmarks": "Add to bookmarks"}>
+            <BookFilled
+              style={{
+                color: isBookmarked ? "#F2BB05" : "#ccc",
+                fontSize: "22px",
+                cursor: "pointer",
+                transition: "transform 0.2s ease, color 0.2s ease",
+              }}
+              onClick={() => onBookmarkClicked(movie)}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "scale(1.2)";
+              }}
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.transform = "scale(1)")
+              }
+            />
+          </Tooltip>
+        </Flex>
 
         <Space size="middle" wrap>
           {movie.Year && (
@@ -107,7 +161,6 @@ export default function MovieDetail({ movie }) {
 
         <Divider style={{ backgroundColor: "#555", margin: "20px 0" }} />
 
-        {/* Details List */}
         <Space direction="vertical" size="small">
           <Text>
             <Text strong style={{ color: "#FFF" }}>
@@ -140,7 +193,6 @@ export default function MovieDetail({ movie }) {
 
         <Divider style={{ backgroundColor: "#555", margin: "20px 0" }} />
 
-        {/* Plot Section */}
         <Flex vertical>
           <Title
             level={2}

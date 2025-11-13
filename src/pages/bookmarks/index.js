@@ -1,21 +1,27 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Typography, Empty, Flex, Space } from "antd";
 import MovieList from "@/components/movieList";
 import { BookFilled } from "@ant-design/icons";
-import { Roboto } from "next/font/google";
 import { roboto } from "@/utils/fonts.mjs";
 
 const { Title, Text } = Typography;
 
 export default function Bookmark() {
+  const [data, setData] = useState([]);
   const bookmarks = useSelector((state) => state.bookmarks);
   const hasBookmarks = bookmarks && bookmarks.length > 0;
 
+  useEffect(() => {
+    if (hasBookmarks) {
+      setData(bookmarks);
+    }
+  }, [hasBookmarks]);
+
   return (
     <Flex vertical align="center" style={{ width: "100%", paddingTop: "16px" }}>
-      {hasBookmarks && (
+      {data.length > 0 && (
         <Flex
           vertical
           align="center"
@@ -44,8 +50,7 @@ export default function Bookmark() {
         </Flex>
       )}
 
-      {/* Main Content */}
-      {hasBookmarks ? (
+      {data.length ? (
         <Flex style={{ width: "100%" }}>
           <MovieList movies={bookmarks} totalResults={bookmarks.length} />
         </Flex>

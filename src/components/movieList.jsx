@@ -31,27 +31,27 @@ export default function MovieList({ movies = [], totalResults = 0 }) {
   };
 
   const onBookmarkClicked = (movie) => {
-  const isBookmarked = bookmarks.some((b) => b.imdbID === movie.imdbID);
-  dispatch(bookmarkToggled(movie));
+    const isBookmarked = bookmarks.some((b) => b.imdbID === movie.imdbID);
+    dispatch(bookmarkToggled(movie));
 
-  messageApi.open({
-    type: isBookmarked ? "warning" : "success",
-    content: isBookmarked
-      ? `"${movie.Title}" removed from bookmarks`
-      : `"${movie.Title}" added to bookmarks`,
-    style: {
-      color: "#EFF1ED",
-      fontWeight: 500,
-    },
-  });
-};
-
+    messageApi.open({
+      type: isBookmarked ? "warning" : "success",
+      content: isBookmarked
+        ? `"${movie.Title}" removed from bookmarks`
+        : `"${movie.Title}" added to bookmarks`,
+      style: {
+        color: "#EFF1ED",
+        fontWeight: 500,
+      },
+      duration: 2,
+    });
+  };
 
   return (
     <>
       {contextHolder}
-      <Flex vertical style={{ paddingInline: "48px", width: "100%" }}>
-        <Row gutter={[48, 48]} justify="start" wrap>
+      <Flex style={{ paddingInline: "48px", width: "100%" }} vertical>
+        <Row gutter={[64, 64]} justify="start" align="center" wrap>
           {movies.map((movie) => {
             const isBookmarked = bookmarks.some(
               (b) => b.imdbID === movie.imdbID
@@ -109,10 +109,9 @@ export default function MovieList({ movies = [], totalResults = 0 }) {
                         style={{
                           overflow: "hidden",
                           whiteSpace: "nowrap",
-                          maxWidth: "190px",
+                          maxWidth: "70%",
                         }}
                       >
-                        {/* ✅ Title now clickable */}
                         <Link href={targetRoute} passHref>
                           <Title
                             level={4}
@@ -128,22 +127,23 @@ export default function MovieList({ movies = [], totalResults = 0 }) {
                         <Text style={{ fontSize: "14px" }}>{movie.Year}</Text>
                       </Flex>
                     </Tooltip>
-
-                    <BookFilled
-                      style={{
-                        color: isBookmarked ? "#F2BB05" : "#ccc",
-                        fontSize: "22px",
-                        cursor: "pointer",
-                        transition: "transform 0.2s ease, color 0.2s ease",
-                      }}
-                      onClick={() => onBookmarkClicked(movie)}
-                      onMouseEnter={(e) =>
-                        (e.currentTarget.style.transform = "scale(1.2)")
-                      }
-                      onMouseLeave={(e) =>
-                        (e.currentTarget.style.transform = "scale(1)")
-                      }
-                    />
+                    <Tooltip title={isBookmarked? "Remove from bookmarks": "Add to bookmarks"}>
+                      <BookFilled
+                        style={{
+                          color: isBookmarked ? "#F2BB05" : "#ccc",
+                          fontSize: "22px",
+                          cursor: "pointer",
+                          transition: "transform 0.2s ease, color 0.2s ease",
+                        }}
+                        onClick={() => onBookmarkClicked(movie)}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.transform = "scale(1.2)";
+                        }}
+                        onMouseLeave={(e) =>
+                          (e.currentTarget.style.transform = "scale(1)")
+                        }
+                      />
+                    </Tooltip>
                   </Flex>
                 </Card>
               </Col>

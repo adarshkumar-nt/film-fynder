@@ -1,4 +1,5 @@
 "use client";
+import ErrorComp from "@/components/error";
 import MovieList from "@/components/movieList";
 import SectionHeader from "@/components/sectionHeader";
 import Spinner from "@/components/spinner";
@@ -26,9 +27,7 @@ export default function Movies() {
 
   if (data.Response === "False") {
     return (
-      <Flex justify="center" align="center">
-        <Title className={roboto.className}>Failed to load movies: {data.Error}</Title>
-      </Flex>
+      <ErrorComp message="failed to load movies" error={data.Error}/>
     );
   }
 
