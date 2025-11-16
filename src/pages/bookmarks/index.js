@@ -5,7 +5,7 @@ import { BookFilled } from "@ant-design/icons";
 import { roboto } from "@/utils/fonts.mjs";
 import ClientOnly from "@/components/clientOnly";
 
-import styles from "./bookmark.module.css";
+import styles from "./bookmarks.module.css";
 
 const { Title, Text } = Typography;
 
