@@ -53,7 +53,6 @@ export default function SearchBar() {
     }, 700),
     [dispatch, routeType]
   );
-
   const handleChange = (e) => {
     const value = e.target.value;
     setSearchQuery(value);

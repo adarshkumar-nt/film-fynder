@@ -1,3 +1,4 @@
+import { Carousel } from "antd";
 import { nunito } from "./fonts.mjs";
 
 export const theme = {
@@ -24,5 +25,13 @@ export const theme = {
       lineWidthFocus: 2,
       colorIcon: "#F06543",
     },
+    Carousel: {
+      colorBgContainer: "#EFF1ED",
+      arrowSize: 30,
+      arrowOffset: 20,
+      dotGap: 5,
+      dotWidth: 26,
+      dotheight:4
+    }
   },
 };

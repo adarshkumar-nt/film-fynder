@@ -94,8 +94,6 @@ export default function Navbar() {
         open={drawerOpen}
         onClose={() => setDrawerOpen(false)}
         placement="left"
-        bodyStyle={{ padding: 0 }}
-        headerStyle={{ background: "#28282d", borderBottom: "none" }}
         style={{ background: "#2B2B31" }}
       >
         <Flex vertical style={{ padding: "16px" }} gap="large">

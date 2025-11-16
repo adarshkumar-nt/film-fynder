@@ -19,9 +19,11 @@ import { roboto } from "@/utils/fonts.mjs";
 
 const { Text, Title } = Typography;
 
-export default function MovieList({ movies = [], totalResults = 0 }) {
+export default function MovieList({ movies = [], totalResults = 0, isBookmarks = false }) {
   const dispatch = useDispatch();
   const bookmarks = useSelector((state) => state.bookmarks);
+
+  const currentPage = useSelector((s) => s.search.page);
 
   const [messageApi, contextHolder] = message.useMessage();
 
@@ -62,7 +64,7 @@ export default function MovieList({ movies = [], totalResults = 0 }) {
                 : `/movies/${movie.imdbID}`;
 
             return (
-              <Col key={movie.imdbID} xs={24} sm={12} md={8} lg={6} xl={4}>
+              <Col key={movie.imdbID} xs={24} sm={12} md={8} lg={6} xl={6}>
                 <Card
                   hoverable
                   style={{
@@ -151,11 +153,11 @@ export default function MovieList({ movies = [], totalResults = 0 }) {
           })}
         </Row>
 
-        {totalResults > 0 && (
+        {!isBookmarks && totalResults > 0 && (
           <Flex justify="center" style={{ marginTop: "32px" }}>
             <Pagination
               current={parseInt(
-                useSelector((s) => s.search.page),
+                currentPage,
                 10
               )}
               onChange={onPageChange}

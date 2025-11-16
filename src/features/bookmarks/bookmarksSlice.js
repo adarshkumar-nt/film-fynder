@@ -1,6 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const loadBookmarks = () => {
+  if(typeof window === "undefined"){
+    return [];
+  }
   try {
     const saved = localStorage.getItem("bookmarks");
     return saved ? JSON.parse(saved) : [];
@@ -28,7 +31,7 @@ const bookmarksSlice = createSlice({
 
 export const bookmarksMiddleware = (store) => (next) => (action) => {
   const result = next(action);
-  if (action.type.startsWith("bookmarks/")) {
+  if (bookmarkToggled.match(action)) {
     try {
       localStorage.setItem("bookmarks", JSON.stringify(store.getState().bookmarks));
     } catch (e) {

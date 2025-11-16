@@ -8,6 +8,7 @@ import { store } from "@/store/store";
 import "@/styles/globals.css";
 import Navbar from "@/components/navbar";
 import { useState } from "react";
+import { roboto } from "@/utils/fonts.mjs";
 import { theme } from "@/utils/theme.mjs";
 
 const { Text } = Typography;

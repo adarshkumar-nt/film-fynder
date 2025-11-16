@@ -12,7 +12,7 @@ const { useBreakpoint } = Grid;
 
 const featuredData = [
   { title: "Batman", image: "/batman.jpg", route: "/movies/tt1877830" },
-  { title: "Parasite", image: "/parasite.jpg", route: "/movies/tt6751668" },
+  { title: "Avengers", image: "/avengers.jpg", route: "/movies/tt0848228" },
   { title: "Dark", image: "/dark.jpg", route: "/tv/tt5753856" },
   {
     title: "Stranger Things",
@@ -39,19 +39,15 @@ export default function Home() {
   const carouselHeight = isMobile ? "45vh" : "75vh";
 
   if (isLoading) return <Spinner />;
-  if (data.Response === "False")
-    return (
-      <ErrorComp message="Failed to load movie or series" error={data.Error} />
-    );
 
   return (
     <Flex vertical align="center" style={{ width: "100%" }}>
       <Carousel
         autoplay
-        autoplaySpeed={3500}
+        autoplaySpeed={2000}
         dots
-        arrows
         effect="fade"
+        arrows
         style={{
           width: "99vw",
           height: carouselHeight,
@@ -64,18 +60,19 @@ export default function Home() {
             <div
               style={{
                 width: "100%",
+                margin: "0 auto",
                 height: carouselHeight,
                 position: "relative",
-                cursor: "pointer",
               }}
             >
               <img
                 src={item.image}
-                alt={item.title || "Featured"}
+                alt={item.title}
                 style={{
                   width: "100%",
                   height: "100%",
                   objectFit: "fill",
+                  filter: "brightness(80%)",
                 }}
               />
             </div>
@@ -110,7 +107,14 @@ export default function Home() {
         </Space>
       </Flex>
 
-      <MovieList movies={data.Search} totalResults={data.totalResults} />
+      {data.Response === "False" ? (
+        <ErrorComp
+          message="Failed to load movie or series"
+          error={data.Error}
+        />
+      ) : (
+        <MovieList movies={data.Search} totalResults={data.totalResults} />
+      )}
     </Flex>
   );
 }

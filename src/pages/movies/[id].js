@@ -25,11 +25,9 @@ export default function MovieDetails() {
   if (!isReady || isLoading) return <Spinner />;
 
   if (isError || !data || data.Response === "False") {
-    return (
-      <Flex justify="center" align="center">
+    return <Flex justify="center" align="center">
         <Title className={roboto.className}>Failed to load movie</Title>
       </Flex>
-    );
   }
 
   return <MovieDetail movie={data} />;
