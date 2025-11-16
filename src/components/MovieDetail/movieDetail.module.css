@@ -1,0 +1,94 @@
+/* MovieDetail.module.css */
+
+.loaderWrapper {
+  width: 100%;
+  padding: 40px 0;
+}
+
+.pageContainer {
+  width: 100%;
+  justify-content: center;
+}
+
+.innerContainer {
+  width: 100%;
+  max-width: 1100px;
+  margin: 40px auto;
+  padding-inline: 24px;
+}
+
+.posterWrapper {
+  flex: 0 0 280px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+.posterImage {
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.detailsWrapper {
+  flex: 1 1 500px;
+  min-width: 260px;
+}
+
+.topBar {
+  margin-bottom: 8px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.backButton {
+  color: #EFF1ED !important;
+  font-size: 16px;
+}
+
+.bookmarkIcon {
+  font-size: 22px;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.bookmarkIcon:hover {
+  transform: scale(1.2);
+}
+
+.title {
+  color: #FFF !important;
+  margin-bottom: 12px !important;
+}
+
+.detailTag {
+  background: #3B3B45;
+  border: none;
+  color: #FFF !important;
+}
+
+.ratingTag {
+  background: #3B3B45;
+  border: none;
+  color: #F2BB05 !important;
+}
+
+.divider {
+  background-color: #555 !important;
+}
+
+.sectionLabel {
+  color: #FFF !important;
+}
+
+.plotTitle {
+  color: #FFF !important;
+  margin-bottom: 8px !important;
+}
+
+.plotText {
+  color: #D8D8D8;
+  line-height: 1.7;
+  font-size: 15px;
+}

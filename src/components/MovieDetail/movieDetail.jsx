@@ -24,6 +24,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { bookmarkToggled } from "@/features/bookmarks/bookmarksSlice";
 import { useRouter } from "next/router";
 
+import styles from "./movieDetail.module.css";
+
 const { Title, Text } = Typography;
 
 export default function MovieDetail({ movie, loading }) {
@@ -49,36 +51,19 @@ export default function MovieDetail({ movie, loading }) {
 
   if (loading || !movie) {
     return (
-      <Flex justify="center" style={{ width: "100%", padding: "40px 0" }}>
+      <Flex justify="center" className={styles.loaderWrapper}>
         <Skeleton active avatar paragraph={{ rows: 10 }} style={{ width: "80%" }} />
       </Flex>
     );
   }
+
   return (
     <>
       {contextHolder}
 
-      <Flex justify="center" style={{ width: "100%" }}>
-        <Flex
-          wrap
-          gap="large"
-          style={{
-            width: "100%",
-            maxWidth: "1100px",
-            margin: "40px auto",
-            paddingInline: "24px",
-          }}
-        >
-          <Flex
-            justify="center"
-            align="center"
-            style={{
-              flex: "0 0 280px",
-              borderRadius: "10px",
-              overflow: "hidden",
-              boxShadow: "0 4px 12px rgba(0,0,0,0.5)",
-            }}
-          >
+      <Flex justify="center" className={styles.pageContainer}>
+        <Flex wrap gap="large" className={styles.innerContainer}>
+          <Flex className={styles.posterWrapper}>
             <Image
               src={
                 movie.Poster && movie.Poster !== "N/A"
@@ -89,24 +74,20 @@ export default function MovieDetail({ movie, loading }) {
               preview={false}
               width={280}
               height={420}
-              style={{ objectFit: "cover", borderRadius: "10px" }}
+              className={styles.posterImage}
               onError={(e) => {
                 e.target.onerror = null;
                 e.target.src = "/default-movie.png";
               }}
             />
           </Flex>
-
-          <Flex vertical style={{ flex: "1 1 500px", minWidth: "260px" }}>
-            <Flex justify="space-between" align="center" style={{ marginBottom: "8px" }}>
+          <Flex vertical className={styles.detailsWrapper}>
+            <Flex className={styles.topBar}>
               <Button
                 type="text"
                 icon={<ArrowLeftOutlined />}
                 onClick={() => router.back()}
-                style={{
-                  color: "#EFF1ED",
-                  fontSize: "16px",
-                }}
+                className={styles.backButton}
               >
                 Back
               </Button>
@@ -114,23 +95,13 @@ export default function MovieDetail({ movie, loading }) {
               <Tooltip title={isBookmarked ? "Remove bookmark" : "Add to bookmarks"}>
                 <BookFilled
                   onClick={onBookmarkClicked}
-                  style={{
-                    color: isBookmarked ? "#F2BB05" : "#ccc",
-                    fontSize: "22px",
-                    cursor: "pointer",
-                    transition: "transform 0.2s ease",
-                  }}
-                  onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.2)")}
-                  onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
+                  className={styles.bookmarkIcon}
+                  style={{ color: isBookmarked ? "#F2BB05" : "#ccc" }}
                 />
               </Tooltip>
             </Flex>
 
-            <Title
-              level={2}
-              className={roboto.className}
-              style={{ color: "#FFF", marginBottom: "12px" }}
-            >
+            <Title level={2} className={`${roboto.className} ${styles.title}`}>
               {movie.Title}
             </Title>
 
@@ -138,11 +109,7 @@ export default function MovieDetail({ movie, loading }) {
               {movie.Year && (
                 <Tag
                   icon={<CalendarOutlined />}
-                  style={{
-                    background: "#3B3B45",
-                    border: "none",
-                    color: "#FFF",
-                  }}
+                  className={styles.detailTag}
                 >
                   {movie.Year}
                 </Tag>
@@ -151,11 +118,7 @@ export default function MovieDetail({ movie, loading }) {
               {movie.Runtime && (
                 <Tag
                   icon={<ClockCircleOutlined />}
-                  style={{
-                    background: "#3B3B45",
-                    border: "none",
-                    color: "#FFF",
-                  }}
+                  className={styles.detailTag}
                 >
                   {movie.Runtime}
                 </Tag>
@@ -164,48 +127,40 @@ export default function MovieDetail({ movie, loading }) {
               {movie.imdbRating && movie.imdbRating !== "N/A" && (
                 <Tag
                   icon={<StarFilled />}
-                  style={{
-                    background: "#3B3B45",
-                    border: "none",
-                    color: "#F2BB05",
-                  }}
+                  className={styles.ratingTag}
                 >
                   {movie.imdbRating}/10
                 </Tag>
               )}
             </Space>
 
-            <Divider style={{ backgroundColor: "#555" }} />
+            <Divider className={styles.divider} />
 
             <Space direction="vertical" size="small">
               <Text>
-                <Text strong style={{ color: "#FFF" }}>Genre:</Text> {movie.Genre}
+                <Text strong className={styles.sectionLabel}>Genre:</Text> {movie.Genre}
               </Text>
-
               <Text>
-                <Text strong style={{ color: "#FFF" }}>Director:</Text> {movie.Director}
+                <Text strong className={styles.sectionLabel}>Director:</Text> {movie.Director}
               </Text>
-
               <Text>
-                <Text strong style={{ color: "#FFF" }}>Writer:</Text> {movie.Writer}
+                <Text strong className={styles.sectionLabel}>Writer:</Text> {movie.Writer}
               </Text>
-
               <Text>
-                <Text strong style={{ color: "#FFF" }}>Actors:</Text> {movie.Actors}
+                <Text strong className={styles.sectionLabel}>Actors:</Text> {movie.Actors}
               </Text>
             </Space>
 
-            <Divider style={{ backgroundColor: "#555" }} />
+            <Divider className={styles.divider} />
 
             <Title
               level={3}
-              className={roboto.className}
-              style={{ color: "#FFF", marginBottom: "8px" }}
+              className={`${roboto.className} ${styles.plotTitle}`}
             >
               Plot
             </Title>
 
-            <Text style={{ color: "#D8D8D8", lineHeight: "1.7", fontSize: "15px" }}>
+            <Text className={styles.plotText}>
               {movie.Plot && movie.Plot !== "N/A"
                 ? movie.Plot
                 : "No plot information available."}

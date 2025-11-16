@@ -6,7 +6,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 import { store } from "@/store/store";
 import "@/styles/globals.css";
-import Navbar from "@/components/navbar";
+import Navbar from "@/components/Navbar/navbar";
 import { useState } from "react";
 import { roboto } from "@/utils/fonts.mjs";
 import { theme } from "@/utils/theme.mjs";
@@ -21,7 +21,7 @@ export default function App({ Component, pageProps }) {
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
         <ConfigProvider theme={theme}>
-          <Layout style={{ minHeight: "100vh", maxWidth: "100vw" }}>
+          <Layout style={{ minHeight: "100vh", maxWidth: "100vw", overflowX: "hidden" }}>
             <Header
               style={{
                 position: "sticky",

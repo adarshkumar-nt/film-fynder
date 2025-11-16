@@ -1,0 +1,57 @@
+/* Navbar.module.css */
+
+.navbar {
+  width: 100%;
+  height: 64px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logoText {
+  margin: 0 !important;
+  white-space: nowrap;
+  letter-spacing: 1px;
+}
+
+.logoLink {
+  color: #EFF1ED !important;
+  text-decoration: none;
+}
+
+.logoHighlight {
+  color: #F06543;
+}
+
+.menuWrapper {
+  background: transparent !important;
+  border-bottom: none !important;
+  flex: 1 1 auto;
+  justify-content: center;
+  display: flex;
+  font-size: 16px;
+}
+
+.iconButton {
+  font-size: 22px;
+  color: #EFF1ED;
+}
+
+.mobileMenuButton {
+  font-size: 24px;
+  color: #EFF1ED;
+}
+
+.mobileActionWrapper {
+  align-items: center;
+  gap: 8px;
+}
+
+.drawer {
+  background: #2B2B31 !important;
+}
+
+.drawerMenu {
+  background: transparent !important;
+  border-right: none !important;
+  margin-top: 16px;
+}

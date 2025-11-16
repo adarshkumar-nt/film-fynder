@@ -1,9 +1,11 @@
 import { useSelector } from "react-redux";
 import { Typography, Empty, Flex, Space } from "antd";
-import MovieList from "@/components/movieList";
+import MovieList from "@/components/MovieList/movieList";
 import { BookFilled } from "@ant-design/icons";
 import { roboto } from "@/utils/fonts.mjs";
 import ClientOnly from "@/components/clientOnly";
+
+import styles from "./bookmark.module.css";
 
 const { Title, Text } = Typography;
 
@@ -16,26 +18,18 @@ export default function Bookmark() {
       <Flex
         vertical
         align="center"
-        style={{ width: "100%", paddingTop: "16px" }}
+        className={styles.container}
       >
         {hasBookmarks && (
           <Flex
             vertical
             align="center"
             justify="center"
-            style={{
-              marginBottom: "32px",
-              textAlign: "center",
-              width: "100%",
-            }}
+            className={styles.header}
           >
             <Title
               level={2}
-              className={roboto.className}
-              style={{
-                marginBottom: "8px",
-                paddingTop: "16px",
-              }}
+              className={`${roboto.className} ${styles.headerTitle}`}
             >
               Bookmarks
             </Title>
@@ -48,7 +42,7 @@ export default function Bookmark() {
         )}
 
         {hasBookmarks ? (
-          <Flex style={{ width: "100%" }}>
+          <Flex className={styles.fullWidth}>
             <MovieList
               movies={bookmarks}
               totalResults={bookmarks.length}
@@ -60,27 +54,22 @@ export default function Bookmark() {
             vertical
             align="center"
             justify="center"
-            style={{
-              marginTop: "80px",
-              minHeight: "50vh",
-              width: "100%",
-              textAlign: "center",
-            }}
+            className={styles.emptyContainer}
           >
             <Empty
               description={
                 <Space direction="vertical" align="center" size={4}>
                   <Title
                     level={4}
-                    style={{ marginBottom: 0 }}
                     className={roboto.className}
+                    style={{ marginBottom: 0 }}
                   >
                     You haven't bookmarked any movies yet
                   </Title>
 
                   <Text type="secondary">
                     Search and click the{" "}
-                    <span style={{ color: "#F2BB05" }}>
+                    <span className={styles.highlightIcon}>
                       <BookFilled /> bookmark icon
                     </span>{" "}
                     to save your favorites.

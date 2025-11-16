@@ -1,0 +1,54 @@
+/* MovieList.module.css */
+
+.container {
+  padding-inline: 48px;
+  width: 100%;
+}
+
+.cardWrapper {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+  transition: transform 0.25s ease;
+}
+
+.cardHover:hover {
+  transform: translateY(-4px);
+}
+
+.cardImage {
+  height: 360px;
+  width: 100%;
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.titleContainer {
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 70%;
+}
+
+.titleText {
+  margin: 0;
+  color: #EFF1ED;
+}
+
+.yearText {
+  font-size: 14px;
+}
+
+.bookmarkIcon {
+  font-size: 22px;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.bookmarkIcon:hover {
+  transform: scale(1.2);
+}
+
+.paginationWrapper {
+  margin-top: 32px;
+}

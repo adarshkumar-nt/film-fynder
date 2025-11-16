@@ -1,10 +1,10 @@
 "use client";
-import Spinner from "@/components/spinner";
+import Spinner from "@/components/Spinner/spinner";
 import { useMovieDetail } from "@/services/api/omdbApi";
 import { useRouter } from "next/router";
 import React from "react";
-import MovieDetail from "@/components/movieDetail";
-import Error from "@/components/error";
+import MovieDetail from "@/components/MovieDetail/movieDetail";
+import Error from "@/components/Error/error";
 
 export default function TVDetails() {
   const router = useRouter();

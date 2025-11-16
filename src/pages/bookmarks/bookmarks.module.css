@@ -1,0 +1,31 @@
+.container {
+  width: 100%;
+  padding-top: 16px;
+}
+
+.header {
+  margin-bottom: 32px;
+  text-align: center;
+  width: 100%;
+  padding-top: 16px;
+}
+
+.headerTitle {
+  margin-bottom: 8px;
+  padding-top: 16px;
+}
+
+.emptyContainer {
+  margin-top: 80px;
+  min-height: 50vh;
+  width: 100%;
+  text-align: center;
+}
+
+.highlightIcon {
+  color: #F2BB05;
+}
+
+.fullWidth {
+  width: 100%;
+}

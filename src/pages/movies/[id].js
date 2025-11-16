@@ -1,12 +1,12 @@
 "use client";
-import Spinner from "@/components/spinner";
+import Spinner from "@/components/Spinner/spinner";
 import { useMovieDetail } from "@/services/api/omdbApi";
 import { Flex, Typography } from "antd";
 import { useRouter } from "next/router";
 import React from "react";
-import MovieDetail from "@/components/movieDetail";
+import MovieDetail from "@/components/MovieDetail/movieDetail";
 import { roboto } from "@/utils/fonts.mjs";
-import Error from "@/components/error";
+import Error from "@/components/Error/error";
 
 const { Title } = Typography;
 
