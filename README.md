@@ -41,6 +41,8 @@ FilmFyndr is a web application designed to empower users to effortlessly browse 
 
 ### Home Page
 ![Home](public/homePage.png) 
+### Home Page(mobile)
+![Mobile](public/mobileView.png)
 ### Bookmarks Page
 ![Bookmarks](public/bookmarks.png)
 ### Movies Page
