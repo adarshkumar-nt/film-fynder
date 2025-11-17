@@ -1,6 +1,6 @@
 "use client";
 
-import { Typography, Space, Carousel, Grid } from "antd";
+import { Typography, Carousel, Grid } from "antd";
 import { roboto } from "@/utils/fonts.mjs";
 import Link from "next/link";
 import HorizontalList from "@/components/HorizontalList/horizontalList";

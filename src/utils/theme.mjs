@@ -1,4 +1,3 @@
-import { Carousel } from "antd";
 import { nunito } from "./fonts.mjs";
 
 export const theme = {

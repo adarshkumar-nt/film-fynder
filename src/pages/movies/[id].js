@@ -5,8 +5,7 @@ import { Flex, Typography } from "antd";
 import { useRouter } from "next/router";
 import React from "react";
 import MovieDetail from "@/components/MovieDetail/movieDetail";
-import { roboto } from "@/utils/fonts.mjs";
-import Error from "@/components/Error/error";
+import ErrorComp from "@/components/Error/error";
 
 const { Title } = Typography;
 
@@ -25,9 +24,7 @@ export default function MovieDetails() {
   if (!isReady || isLoading) return <Spinner />;
 
   if (isError || !data || data.Response === "False") {
-    return <Flex justify="center" align="center">
-        <Title className={roboto.className}>Failed to load movie</Title>
-      </Flex>
+    return <ErrorComp message="Failed to load movie"/>
   }
 
   return <MovieDetail movie={data} />;

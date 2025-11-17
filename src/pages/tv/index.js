@@ -7,7 +7,6 @@ import SectionHeader from "@/components/SectionHeader/sectionHeader";
 import Spinner from "@/components/Spinner/spinner";
 import { setFilter } from "@/features/search/searchSlice";
 import { useSearchMovies } from "@/services/api/omdbApi";
-import { roboto } from "@/utils/fonts.mjs";
 import { featuredSeries } from "@/utils/movieData.mjs";
 import { Typography } from "antd";
 import { useEffect } from "react";

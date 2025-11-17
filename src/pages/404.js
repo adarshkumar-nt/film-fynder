@@ -1,7 +1,5 @@
-import { Flex, Typography, Button,Result } from "antd";
+import { Button,Result } from "antd";
 import Link from "next/link";
-
-const { Title, Text } = Typography;
 
 export default function Custom404() {
   return (
