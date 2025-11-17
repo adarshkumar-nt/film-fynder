@@ -30,6 +30,7 @@ body {
 
 * {
   scrollbar-color: var(--secondary) var(--primary);
+  scrollbar-width: thin;
 }
 
 *::-webkit-scrollbar-track {
@@ -38,6 +39,5 @@ body {
 
 *::-webkit-scrollbar-thumb {
   background-image: var(--secondary);
-  border-radius: 14px;
 }
 
