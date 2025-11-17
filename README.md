@@ -1,40 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# FilmFyndr
+
+FilmFyndr is a web application designed to empower users to effortlessly browse vast collections of movies and series and curate their own personalized lists by bookmarking favorites.
+
+## Features
+
+ - Debounced Search
+ - Responsive UI
+ - Bookmarking
+
+## Technologies
+
+ - Next
+ - Ant Design
+ - React Query
+ - Redux Toolkit
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+ - Node.js (version 14 or newer)
+ - npm
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Installation
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+ 1. Clone this repository: `git clone https://github.com/adarshkumar-nt/film-fynder.git`
+ 2. Navigate to moodspace: `cd film-fynder`
+ 3. Install Dependencies: `npm install`
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+### Development Mode
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+ 1. Start the Next develpment server: `npm run dev`
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Production Build
 
-## Learn More
+ 1. Create an optimized build: `npm run build`
+ 2.  The  `dist`  folder produced by the build process contains static files. Deploy these to your preferred web hosting platform.
 
-To learn more about Next.js, take a look at the following resources:
+## Screenshots
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+### Home Page
+![Home](public/homePage.png) 
+### Bookmarks Page
+![Bookmarks](public/bookmarks.png)
+### Movies Page
+![Movies](public/movies.png)
+### TV Page
+![TV](public/tv.png)
+### Search Page
+![Search](public/search.png)

@@ -68,7 +68,7 @@ const selectedKey = router.pathname.includes("bookmarks")
         {!isMobile && (
           <Button
             type="text"
-            icon={<SearchOutlined className={styles.iconButton} />}
+            icon={<SearchOutlined className={styles.iconButton}/>}
             onClick={handleSearch}
           />
         )}
@@ -77,7 +77,7 @@ const selectedKey = router.pathname.includes("bookmarks")
           <Flex className={styles.mobileActionWrapper}>
             <Button
               type="text"
-              icon={<SearchOutlined className={styles.iconButton} />}
+              icon={<SearchOutlined className={styles.iconButton}/>}
               onClick={handleSearch}
             />
             <Button
