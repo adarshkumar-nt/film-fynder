@@ -28,13 +28,12 @@ export default function Bookmark() {
             className={styles.header}
           >
             <Title
-              level={2}
               className={`${roboto.className} ${styles.headerTitle}`}
             >
               Bookmarks
             </Title>
 
-            <Text type="secondary">
+            <Text className={styles.headerSubtext}>
               You have {bookmarks.length}{" "}
               {bookmarks.length === 1 ? "movie" : "movies"} bookmarked.
             </Text>
