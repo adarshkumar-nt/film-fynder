@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography, Card, Row, Col } from "antd";
+import { Typography, Card, Row, Col, Tooltip } from "antd";
 import styles from "./horizontalList.module.css";
 import Link from "next/link";
 
@@ -24,7 +24,9 @@ function HorizontalList({ title, movies }) {
                     className={styles.card}
                     cover={<img src={movie.image} className={styles.image} />}
                   >
-                    <Card.Meta title={movie.title} className={styles.cardTitle}/>
+                    <Tooltip title={movie.title}>
+                      <Card.Meta title={movie.title} className={styles.cardTitle}/>
+                    </Tooltip>
                   </Card>
                 </Link>
               </Col>
