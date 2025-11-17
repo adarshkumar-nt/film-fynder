@@ -8,7 +8,7 @@ const { Title } = Typography;
 function HorizontalList({ title, movies }) {
   return (
     <div className={styles.container}>
-      <Title level={3} className={styles.title}>
+      <Title level={2} className={styles.title}>
         {title}
       </Title>
 

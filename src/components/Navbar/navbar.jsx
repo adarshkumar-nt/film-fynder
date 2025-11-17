@@ -23,14 +23,15 @@ export default function Navbar() {
     { key: "tv", label: "TV", path: "/tv" },
   ];
 
-  const selectedKey = useMemo(() => {
-    const currentPath = router.pathname.toLowerCase();
-    if (currentPath.includes("bookmarks")) return "bookmarks";
-    if (currentPath.includes("movies")) return "movies";
-    if (currentPath.includes("tv")) return "tv";
-    if (currentPath.includes("search")) return "";
-    return "home";
-  }, [router.pathname]);
+const selectedKey = router.pathname.includes("bookmarks")
+  ? "bookmarks"
+  : router.pathname.includes("movies")
+  ? "movies"
+  : router.pathname.includes("tv")
+  ? "tv"
+  : router.pathname.includes("search")
+  ? ""
+  : "home";
 
   const isMobile = !screens.md;
 

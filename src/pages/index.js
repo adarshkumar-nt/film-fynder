@@ -5,7 +5,7 @@ import { roboto } from "@/utils/fonts.mjs";
 import Link from "next/link";
 import HorizontalList from "@/components/HorizontalList/horizontalList";
 import { featuredSeries, featuredData, featuredMovies } from "@/utils/movieData.mjs";
-import styles from "./Home.module.css";
+import styles from "@/styles/Home.module.css";
 
 const { Title, Text } = Typography;
 const { useBreakpoint } = Grid;
