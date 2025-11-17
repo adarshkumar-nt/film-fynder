@@ -3,6 +3,9 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary: #28282D;
+  --secondary: #77867F;
+  --tertiary: #2B2B31;
 }
 
 @theme inline {
@@ -24,3 +27,17 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+* {
+  scrollbar-color: var(--secondary) var(--primary);
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--primary);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-image: var(--secondary);
+  border-radius: 14px;
+}
+
