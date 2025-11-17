@@ -13,6 +13,7 @@ FilmFyndr is a web application designed to empower users to effortlessly browse 
  - Next
  - Ant Design
  - React Query
+ - Axios
  - Redux Toolkit
 
 ## Getting Started
