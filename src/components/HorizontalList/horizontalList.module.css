@@ -59,6 +59,10 @@
   object-fit: cover;
 }
 
+.cardTitle{
+  text-align: center;
+}
+
 .fadeLeft,
 .fadeRight {
   position: absolute;

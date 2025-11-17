@@ -24,7 +24,7 @@ function HorizontalList({ title, movies }) {
                     className={styles.card}
                     cover={<img src={movie.image} className={styles.image} />}
                   >
-                    <Card.Meta title={movie.title} />
+                    <Card.Meta title={movie.title} className={styles.cardTitle}/>
                   </Card>
                 </Link>
               </Col>
