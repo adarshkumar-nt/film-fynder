@@ -1,5 +1,5 @@
 "use client";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState, useRef } from "react";
 import { Input } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,11 +12,23 @@ const DEFAULT_SEARCH_TERM = "Joker";
 
 export default function SearchBar() {
   const [searchQuery, setSearchQuery] = useState("");
+  const searchRef = useRef(null);
   const getSearch = useSelector((s) => s.search.s);
   const dispatch = useDispatch();
 
   useEffect(() => {
     setSearchQuery(getSearch);
+    const handleKeyDown = (e) => {
+      if(e.key === "/"){
+        e.preventDefault();
+        searchRef.current?.focus();
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+    }
   }, []);
 
   const debounce = useMemo(() => {
@@ -63,6 +75,7 @@ export default function SearchBar() {
       placeholder="Search Movies or Shows..."
       enterButton={<SearchOutlined />}
       className={styles.searchBar}
+      ref={searchRef}
     />
   );
 }
