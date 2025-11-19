@@ -24,7 +24,7 @@ export default function SearchPage() {
         />
       ) : (
         <>
-          <Title level={2}>Showing {data.totalResults} results for {`"${searchTerm}"`}</Title>
+          <Title level={2}>Showing {data.totalResults} results for {`"${searchTerm.replace(/\+/g, " ")}"`}</Title>
           <MovieList movies={data.Search} totalResults={data.totalResults} />
         </>
         

@@ -17,7 +17,7 @@ export default function SearchBar() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    setSearchQuery(getSearch);
+    setSearchQuery(getSearch.replace(/\+/g, " "));
     const handleKeyDown = (e) => {
       if(e.key === "/"){
         e.preventDefault();

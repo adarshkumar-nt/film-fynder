@@ -27,6 +27,9 @@ export const featuredSeries = [
   { title: "Barry", image: "/barry.jpg", route: "/tv/tt5348176" },
   { title: "Succession", image: "/succession.jpg", route: "/tv/tt7660850" },
   { title: "Narcos", image: "/narcos.jpg", route: "/tv/tt2707408" },
+  { title: "Sacred Games", image: "/sacred_games.jpg", route: "/tv/tt6077448" },
+  { title: "The Bear", image: "/thebear.jpg", route: "/tv/tt14452776" },
+  { title: "Black Mirror", image: "blackmirror", route: "/tv/tt2085059" },
 ];
 
 export const featuredMovies = [

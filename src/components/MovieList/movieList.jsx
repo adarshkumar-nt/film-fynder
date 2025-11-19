@@ -54,7 +54,7 @@ export default function MovieList({ movies = [], totalResults = 0, isBookmarks =
       {contextHolder}
 
       <Flex className={styles.container} vertical>
-        <Row gutter={[64, 64]} justify="start" align="center" wrap>
+        <Row gutter={[32, 32]} justify="start" align="center" wrap>
           {movies.map((movie) => {
             const isBookmarked = bookmarks.some((b) => b.imdbID === movie.imdbID);
             const targetRoute =
